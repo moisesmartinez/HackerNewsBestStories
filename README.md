@@ -11,6 +11,8 @@ The API is designed with efficiency and scalability in mind.
 - Exposes a single endpoint to display the details of the best N stories.
 - Includes basic input validations with unit testing.
 - Caches Hacker News API responses to reduce external API calls and avoid risking overloading of the Hacker News API.
+- HTTP client separation: All HTTP calls to Hacker News are handled by a dedicated HackerNewsHttpClient service, making the code more modular and testable.
+- Request validation using Data Annotations and custom validation logic.
 
 ## API Endpoints
 
@@ -48,13 +50,13 @@ The API is designed with efficiency and scalability in mind.
 - **Asynchronous Story Fetching**: while stories are currently fetched in parallel, if the list of IDs is very large, it would be better to fetch all of the best stories ID in smaller batches asynchronously.
 - **Error handling**: a more granular error logging when a Story Details fetch failed.
 - **Performance Monitoring**: implement monitoring logs and integrate it with  Application Insights or any other monitoring tool to gather metrics on API responses.
-- **More Unit Tests**: add more testing scenarios.
+- **More Unit Tests**: add more testing scenarios and better structure of the test cases.
 
 ## How to Run the Application
 
 ### .NET Version
 
-- This project was built with **.NET 10**
+- This project was built with **.NET 10 (LTS)**
 
 ### Steps to run the application
 
