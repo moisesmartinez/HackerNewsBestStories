@@ -10,6 +10,7 @@ The API is designed with efficiency and scalability in mind.
 - Fetches individual stories in parallel.
 - Exposes a single endpoint to display the details of the best N stories.
 - Includes basic input validations with unit testing.
+- Caches Hacker News API responses to reduce external API calls and avoid risking overloading of the Hacker News API.
 
 ## API Endpoints
 
@@ -42,10 +43,40 @@ The API is designed with efficiency and scalability in mind.
 
 ### Improvements and Changes considered is given more time
 
-- **Caching**: Implement a caching solution like Redit to improve performance by avoiding requesting IDs that were recently requested.
-- **Rate Limiting**: implement a robust rate limiting policy to protect our endpoint (`/api/stories/beststories`) from abuse and to ensure a fair usage.
-- **Asynchronous Story Fetching**: while stories are currently fetched in parallel, if the list of IDs is very large, it would be better to fetch all of the best stories ID in smaller batches.
+- **Caching**: Replace in memory cache (`IMemoryCache`) with a better caching solution like Redis to improve performance and scalability.
+- **Rate Limiting**: implement a robust rate limiting policy to protect our endpoint (`/api/stories/getbeststories`) from abuse and to ensure a fair usage.
+- **Asynchronous Story Fetching**: while stories are currently fetched in parallel, if the list of IDs is very large, it would be better to fetch all of the best stories ID in smaller batches asynchronously.
 - **Error handling**: a more granular error logging when a Story Details fetch failed.
 - **Performance Monitoring**: implement monitoring logs and integrate it with  Application Insights or any other monitoring tool to gather metrics on API responses.
 - **More Unit Tests**: add more testing scenarios.
+
+## How to Run the Application
+
+### .NET Version
+
+- This project was built with **.NET 10**
+
+### Steps to run the application
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/moisesmartinez/HackerNewsBestStories.git
+    cd HackerNewsApi
+    ```
+
+2.  **Navigate to the project directory:**
+
+    ```bash
+    cd HackerNewsBestStories\\HackerNewsBestStories.API
+    ```
+
+3.  **Run the application:**
+
+    ```bash
+    dotnet run
+    ```
+
+    The API will typically run on `http://localhost:5031`. You can use Postman to test the API.
+
 
